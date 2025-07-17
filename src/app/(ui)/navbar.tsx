@@ -7,20 +7,29 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const Navbar = () => {
+  //? State to track if the menu is open (used for mobile or responsive nav toggling)
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  //? State to control the size of the logo (in pixels)
   const [logoSize, setLogoSize] = useState<number>(120);
 
   useEffect(() => {
+    //* Function to dynamically update logo size on scroll
     const handleScroll = () => {
+      //* Only apply dynamic resizing on large screens (1024px and above)
       if (window.innerWidth >= 1024) {
+        //* Shrink logo size smoothly as user scrolls down
+        //* Minimum size is 120px, maximum is 240px at scrollY = 0
         const newSize = Math.max(120, 240 - window.scrollY / 5);
         setLogoSize(newSize);
       } else {
+        //* On smaller screens, keep logo size fixed
         setLogoSize(120);
       }
     };
     
+    //* Attach scroll event listener when component mounts
     window.addEventListener("scroll", handleScroll);
+    //* Cleanup: remove event listener when component unmounts
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
