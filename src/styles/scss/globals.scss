@@ -1,2 +1,10 @@
-//? Bootstrap Source SASS Files
-@import '~bootstrap/scss/bootstrap';
+.footer {
+  text-align: center;
+  padding-top: 3rem;
+  padding: 2rem 0;
+  border-top: 1px solid #000;
+  font-size: 16px;
+  small {
+    font-size: 13px;
+  }
+}
